@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EventoResource\Pages;
 use App\Filament\Resources\EventoResource\RelationManagers;
 use App\Filament\Resources\EventoResource\RelationManagers\AreasRelationManager;
+use App\Filament\Resources\EventoResource\RelationManagers\ModalidadeRelationManager;
 use App\Models\Evento;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -90,6 +91,7 @@ class EventoResource extends Resource
     {
         return [
             AreasRelationManager::class,
+            ModalidadeRelationManager::class,
         ];
     }
 

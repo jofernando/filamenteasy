@@ -72,4 +72,14 @@ class Evento extends Model
     {
         return $this->hasMany(Area::class);
     }
+
+    /**
+     * Get all of the modalidades for the Evento
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function modalidades(): HasMany
+    {
+        return $this->hasMany(Modalidade::class);
+    }
 }
