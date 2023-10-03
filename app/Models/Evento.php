@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Evento extends Model
@@ -60,5 +61,15 @@ class Evento extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get all of the areas for the Evento
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function areas(): HasMany
+    {
+        return $this->hasMany(Area::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventoResource\Pages;
 use App\Filament\Resources\EventoResource\RelationManagers;
+use App\Filament\Resources\EventoResource\RelationManagers\AreasRelationManager;
 use App\Models\Evento;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -88,7 +89,7 @@ class EventoResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AreasRelationManager::class,
         ];
     }
 
