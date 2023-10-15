@@ -83,6 +83,16 @@ class Evento extends Model
         return $this->hasMany(Modalidade::class);
     }
 
+    /**
+     * Get all of the arquivos for the Evento
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function arquivos(): HasMany
+    {
+        return $this->hasMany(Arquivo::class);
+    }
+
     public function revisores()
     {
         $id = $this->id;

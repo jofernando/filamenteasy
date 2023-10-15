@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EventoResource\Pages;
 use App\Filament\Resources\EventoResource\RelationManagers;
 use App\Filament\Resources\EventoResource\RelationManagers\AreasRelationManager;
+use App\Filament\Resources\EventoResource\RelationManagers\ArquivosRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\ModalidadeRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\RevisoresRelationManager;
 use App\Models\Evento;
@@ -91,6 +92,7 @@ class EventoResource extends Resource
     public static function getRelations(): array
     {
         return [
+            ArquivosRelationManager::class,
             AreasRelationManager::class,
             ModalidadeRelationManager::class,
             RevisoresRelationManager::class,
