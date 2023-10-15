@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Modalidade extends Model
@@ -34,5 +35,13 @@ class Modalidade extends Model
     public function evento(): BelongsTo
     {
         return $this->belongsTo(Evento::class);
+    }
+
+    /**
+     * Get all of the revisores for the Modalidade.
+     */
+    public function revisores(): MorphToMany
+    {
+        return $this->morphToMany(User::class, 'revisores');
     }
 }

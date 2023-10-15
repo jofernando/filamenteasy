@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,5 +53,21 @@ class User extends Authenticatable
     public function eventos(): HasMany
     {
         return $this->hasMany(Evento::class);
+    }
+
+    /**
+     * Pega todas as areas que o usuário é responsável por revisar.
+     */
+    public function areas_revisaveis(): MorphToMany
+    {
+        return $this->morphedByMany(Area::class, 'revisores');
+    }
+
+    /**
+     * Pega todas as modalidades que o usuário é responsável por revisar.
+     */
+    public function modalidades_revisaveis(): MorphToMany
+    {
+        return $this->morphedByMany(Modalidade::class, 'revisores');
     }
 }

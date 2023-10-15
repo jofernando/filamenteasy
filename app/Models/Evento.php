@@ -82,4 +82,21 @@ class Evento extends Model
     {
         return $this->hasMany(Modalidade::class);
     }
+
+    public function revisores()
+    {
+        $id = $this->id;
+        return User::where(function ($query) use($id) {
+            $query->whereHas('areas_revisaveis.evento', function ($query) use ($id) {
+                $query->where('eventos.id', $id);
+            })->orWhereHas('modalidades_revisaveis.evento', function ($query) use ($id) {
+                $query->where('eventos.id', $id);
+            });
+        });
+    }
+
+    protected function getRevisoresAttribute()
+    {
+        return $this->revisores()->get();
+    }
 }

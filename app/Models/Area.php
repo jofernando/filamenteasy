@@ -30,4 +30,12 @@ class Area extends Model
     {
         return $this->belongsTo(Evento::class);
     }
+
+    /**
+     * Get all of the revisores for the Area.
+     */
+    public function revisores(): MorphToMany
+    {
+        return $this->morphToMany(User::class, 'revisores');
+    }
 }
