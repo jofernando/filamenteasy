@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Formulario\Formulario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Evento extends Model
@@ -108,5 +110,15 @@ class Evento extends Model
     protected function getRevisoresAttribute()
     {
         return $this->revisores()->get();
+    }
+
+    /**
+     * Get all of the formularios for the Evento
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function formularios(): HasManyThrough
+    {
+        return $this->hasManyThrough(Formulario::class, Modalidade::class);
     }
 }

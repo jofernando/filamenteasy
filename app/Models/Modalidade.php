@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Formulario\Formulario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -43,5 +45,15 @@ class Modalidade extends Model
     public function revisores(): MorphToMany
     {
         return $this->morphToMany(User::class, 'revisores');
+    }
+
+    /**
+     * Get the formulario associated with the Modalidade
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function formulario(): HasOne
+    {
+        return $this->hasOne(Formulario::class);
     }
 }
