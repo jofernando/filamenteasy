@@ -77,7 +77,8 @@ class EventoResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->label('Configurar'),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
