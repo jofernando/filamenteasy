@@ -6,7 +6,7 @@ use App\Filament\Resources\EventoResource\Pages;
 use App\Filament\Resources\EventoResource\RelationManagers;
 use App\Filament\Resources\EventoResource\RelationManagers\AreasRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\ArquivosRelationManager;
-use App\Filament\Resources\EventoResource\RelationManagers\ModalidadeRelationManager;
+use App\Filament\Resources\EventoResource\RelationManagers\ModalidadesRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\RevisoresRelationManager;
 use App\Models\Evento;
 use Filament\Forms;
@@ -95,7 +95,7 @@ class EventoResource extends Resource
         return [
             ArquivosRelationManager::class,
             AreasRelationManager::class,
-            ModalidadeRelationManager::class,
+            ModalidadesRelationManager::class,
             RevisoresRelationManager::class,
         ];
     }
