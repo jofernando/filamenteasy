@@ -20,8 +20,8 @@ return new class extends Migration
             $table->dateTime('avaliacao_fim');
             $table->dateTime('resultado');
             $table->foreignId('evento_id')->constrained();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

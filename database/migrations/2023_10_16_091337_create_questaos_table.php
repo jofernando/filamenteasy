@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('mostrar_resposta_autor');
             $table->foreignId('formulario_id')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

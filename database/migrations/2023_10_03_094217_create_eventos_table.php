@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('banner');
             $table->string('logo');
             $table->foreignId('user_id')->constrained();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('nome');
             $table->foreignId('questao_id')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

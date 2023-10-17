@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('descricao');
             $table->foreignId('modalidade_id')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
