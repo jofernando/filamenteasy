@@ -2,14 +2,16 @@
 
 namespace App\Models\Formulario;
 
+use App\Models\Modalidade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Formulario extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +20,7 @@ class Formulario extends Model
     protected $fillable = [
         'nome',
         'descricao',
+        'modalidade_id'
     ];
 
     /**
@@ -28,5 +31,15 @@ class Formulario extends Model
     public function questoes(): HasMany
     {
         return $this->hasMany(Questao::class);
+    }
+
+    /**
+     * Get the modalidade that owns the Formulario
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function modalidade(): BelongsTo
+    {
+        return $this->belongsTo(Modalidade::class);
     }
 }

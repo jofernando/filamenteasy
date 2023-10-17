@@ -18,6 +18,9 @@ class Questao extends Model
      */
     protected $fillable = [
         'nome',
+        'tipo',
+        'mostrar_resposta_autor',
+        'formulario_id',
     ];
 
     /**
