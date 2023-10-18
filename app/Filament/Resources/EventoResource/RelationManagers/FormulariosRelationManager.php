@@ -6,6 +6,7 @@ use App\Forms\Components\RepeaterWizard;
 use App\Models\Formulario\Questao;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -33,7 +34,8 @@ class FormulariosRelationManager extends RelationManager
                             ->maxLength(65535),
                         Forms\Components\Select::make('tipo')
                             ->required()
-                            ->options(Questao::TIPOS),
+                            ->options(Questao::TIPOS)
+                            ->live(),
                         Forms\Components\Toggle::make('mostrar_resposta_autor')
                             ->label('Resposta visível para o autor'),
                         Forms\Components\Repeater::make('opcoes')
@@ -44,7 +46,8 @@ class FormulariosRelationManager extends RelationManager
                             ])
                             ->label('Opções')
                             ->columns(1)
-                            ->relationship(),
+                            ->relationship()
+                            ->hidden(fn (Get $get): bool => empty($get('tipo')) || $get('tipo') == 'DISCURSIVA'),
                     ])
                     ->relationship()
             ])->columns(1);
