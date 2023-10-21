@@ -209,7 +209,7 @@
                 <div
                     @class([
                         'flex justify-between gap-x-3',
-                        'px-6 pb-6' => $isContained,
+                        'px-6 py-6' => $isContained,
                         'mt-6' => ! $isContained,
                     ])
                 >
@@ -242,7 +242,7 @@
         <div
             @class([
                 'flex items-center justify-center gap-x-3',
-                'px-6 pb-6' => $isContained,
+                'px-6 py-6' => $isContained,
                 'mt-6' => ! $isContained,
             ])
         >
