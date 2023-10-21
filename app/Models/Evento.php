@@ -120,4 +120,14 @@ class Evento extends Model
     {
         return $this->hasManyThrough(Formulario::class, Modalidade::class);
     }
+
+    /**
+     * Get all of the trabalhos for the Evento
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function trabalhos(): HasManyThrough
+    {
+        return $this->hasManyThrough(Trabalho::class, Modalidade::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -70,5 +71,15 @@ class User extends Authenticatable
     public function modalidades_revisaveis(): MorphToMany
     {
         return $this->morphedByMany(Modalidade::class, 'revisores');
+    }
+
+    /**
+     * The cotrabalhos that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function cotrabalhos(): BelongsToMany
+    {
+        return $this->belongsToMany(Trabalho::class, 'coautores');
     }
 }
