@@ -30,6 +30,19 @@ class Modalidade extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'submissao_inicio' => 'datetime:d/m/Y H:i',
+        'submissao_fim' => 'datetime:d/m/Y H:i',
+        'avaliacao_inicio' => 'datetime:d/m/Y H:i',
+        'avaliacao_fim' => 'datetime:d/m/Y H:i',
+        'resultado' => 'datetime:d/m/Y H:i',
+    ];
+
+    /**
      * Get the evento that owns the Modalidade
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
