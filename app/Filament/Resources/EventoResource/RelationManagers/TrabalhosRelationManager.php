@@ -66,9 +66,11 @@ class TrabalhosRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('nome')
             ->columns([
-                Tables\Columns\TextColumn::make('nome'),
+                Tables\Columns\TextColumn::make('nome')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Autor'),
+                    ->label('Autor')
+                    ->sortable(),
             ])
             ->filters([
                 //

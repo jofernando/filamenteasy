@@ -53,8 +53,11 @@ class RevisoresRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nome'),
-                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nome')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->sortable(),
             ])
             ->filters([
                 //
