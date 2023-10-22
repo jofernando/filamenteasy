@@ -19,8 +19,12 @@
         @vite('resources/css/app.css')
     </head>
 
-    <body class="antialiased">
-        {{ $slot }}
+    <body class="antialiased bg-gray-100">
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                {{ $slot }}
+            </div>
+        </div>
 
         @filamentScripts
         @vite('resources/js/app.js')
