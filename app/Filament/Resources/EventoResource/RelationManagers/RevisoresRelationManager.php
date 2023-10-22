@@ -85,8 +85,8 @@ class RevisoresRelationManager extends RelationManager
                 Tables\Actions\EditAction::make()
                 ->mutateRecordDataUsing(function (array $data): array {
                     $user = User::find($data['id']);
-                    $data['areas'] = $user->areas_revisaveis()->pluck('revisores.revisores_id')->all();
-                    $data['modalidades'] = $user->modalidades_revisaveis()->pluck('revisores.revisores_id')->all();
+                    $data['areas'] = $user->areas_revisaveis()->pluck('areas.id')->all();
+                    $data['modalidades'] = $user->modalidades_revisaveis()->pluck('modalidades.id')->all();
 
                     return $data;
                 })

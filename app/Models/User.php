@@ -62,7 +62,7 @@ class User extends Authenticatable
      */
     public function areas_revisaveis(): MorphToMany
     {
-        return $this->morphedByMany(Area::class, 'revisores');
+        return $this->morphedByMany(Area::class, 'revisavel', 'revisores');
     }
 
     /**
@@ -70,7 +70,7 @@ class User extends Authenticatable
      */
     public function modalidades_revisaveis(): MorphToMany
     {
-        return $this->morphedByMany(Modalidade::class, 'revisores');
+        return $this->morphedByMany(Modalidade::class, 'revisavel', 'revisores');
     }
 
     /**

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('revisores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->unsignedBigInteger('revisores_id');
-            $table->string('revisores_type');
+            $table->unsignedBigInteger('revisavel_id');
+            $table->string('revisavel_type');
             $table->timestamps();
         });
     }

@@ -57,7 +57,7 @@ class Modalidade extends Model
      */
     public function revisores(): MorphToMany
     {
-        return $this->morphToMany(User::class, 'revisores');
+        return $this->morphToMany(User::class, 'revisavel', 'revisores');
     }
 
     /**
