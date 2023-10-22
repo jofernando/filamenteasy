@@ -9,6 +9,7 @@ use App\Filament\Resources\EventoResource\RelationManagers\ArquivosRelationManag
 use App\Filament\Resources\EventoResource\RelationManagers\QuestionariosRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\ModalidadesRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\RevisoresRelationManager;
+use App\Filament\Resources\EventoResource\RelationManagers\TrabalhosRelationManager;
 use App\Models\Evento;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -97,6 +98,7 @@ class EventoResource extends Resource
             ArquivosRelationManager::class,
             AreasRelationManager::class,
             ModalidadesRelationManager::class,
+            TrabalhosRelationManager::class,
             RevisoresRelationManager::class,
             QuestionariosRelationManager::class,
         ];
