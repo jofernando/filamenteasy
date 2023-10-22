@@ -3,7 +3,8 @@
 namespace App\Filament\Resources\EventoResource\RelationManagers;
 
 use App\Forms\Components\RepeaterWizard;
-use App\Models\Formulario\Questao;
+use App\Models\Modalidade;
+use App\Models\Questionario\Questao;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -11,16 +12,19 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class FormulariosRelationManager extends RelationManager
+class QuestionariosRelationManager extends RelationManager
 {
-    protected static string $relationship = 'formularios';
+    protected static string $relationship = 'questionarios';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('modalidade_id')
-                    ->relationship(name: 'modalidade', titleAttribute: 'nome'),
+                Forms\Components\MorphToSelect::make('questionavel')
+                    ->types([
+                        Forms\Components\MorphToSelect\Type::make(Modalidade::class)
+                            ->titleAttribute('nome'),
+                    ]),
                 Forms\Components\TextInput::make('nome')
                     ->required()
                     ->maxLength(255),
@@ -59,7 +63,7 @@ class FormulariosRelationManager extends RelationManager
             ->recordTitleAttribute('nome')
             ->columns([
                 Tables\Columns\TextColumn::make('nome'),
-                Tables\Columns\TextColumn::make('modalidade.nome'),
+                Tables\Columns\TextColumn::make('questionavel.nome'),
             ])
             ->filters([
                 //

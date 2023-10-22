@@ -6,7 +6,7 @@ use App\Filament\Resources\EventoResource\Pages;
 use App\Filament\Resources\EventoResource\RelationManagers;
 use App\Filament\Resources\EventoResource\RelationManagers\AreasRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\ArquivosRelationManager;
-use App\Filament\Resources\EventoResource\RelationManagers\FormulariosRelationManager;
+use App\Filament\Resources\EventoResource\RelationManagers\QuestionariosRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\ModalidadesRelationManager;
 use App\Filament\Resources\EventoResource\RelationManagers\RevisoresRelationManager;
 use App\Models\Evento;
@@ -98,7 +98,7 @@ class EventoResource extends Resource
             AreasRelationManager::class,
             ModalidadesRelationManager::class,
             RevisoresRelationManager::class,
-            FormulariosRelationManager::class,
+            QuestionariosRelationManager::class,
         ];
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Formulario\Formulario;
+use App\Models\Questionario\Questionario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -61,13 +61,11 @@ class Modalidade extends Model
     }
 
     /**
-     * Get the formulario associated with the Modalidade
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Get all of the questionarios for the Modalidade.
      */
-    public function formulario(): HasOne
+    public function questionarios(): MorphToMany
     {
-        return $this->hasOne(Formulario::class);
+        return $this->morphToMany(User::class, 'questionavel');
     }
 
     /**

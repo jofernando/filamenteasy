@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formularios', function (Blueprint $table) {
+        Schema::create('questionarios', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->text('descricao');
-            $table->foreignId('modalidade_id')->constrained();
+            $table->unsignedBigInteger('questionavel_id');
+            $table->string('questionavel_type');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formularios');
+        Schema::dropIfExists('questionarios');
     }
 };

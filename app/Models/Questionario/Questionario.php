@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Models\Formulario;
+namespace App\Models\Questionario;
 
 use App\Models\Modalidade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Formulario extends Model
+class Questionario extends Model
 {
     use SoftDeletes, HasFactory;
 
@@ -21,11 +23,13 @@ class Formulario extends Model
     protected $fillable = [
         'nome',
         'descricao',
-        'modalidade_id'
+        'modalidade_id',
+        'questionavel_id',
+        'questionavel_type',
     ];
 
     /**
-     * Get all of the questoes for the Formulario
+     * Get all of the questoes for the Questionario
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -34,13 +38,11 @@ class Formulario extends Model
         return $this->hasMany(Questao::class);
     }
 
-    /**
-     * Get the modalidade that owns the Formulario
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     /**
+     * Get the parent questionavel model (modalidade or categoria).
      */
-    public function modalidade(): BelongsTo
+    public function questionavel(): MorphTo
     {
-        return $this->belongsTo(Modalidade::class);
+        return $this->morphTo();
     }
 }

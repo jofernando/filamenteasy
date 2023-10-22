@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('nome');
             $table->string('tipo');
             $table->boolean('mostrar_resposta_autor');
-            $table->foreignId('formulario_id')->constrained();
+            $table->foreignId('questionario_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

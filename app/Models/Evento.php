@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Formulario\Formulario;
+use App\Models\Questionario\Questionario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -112,13 +112,14 @@ class Evento extends Model
     }
 
     /**
-     * Get all of the formularios for the Evento
+     * Get all of the questionarios for the Evento
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function formularios(): HasManyThrough
+    public function questionarios(): HasManyThrough
     {
-        return $this->hasManyThrough(Formulario::class, Modalidade::class);
+        return $this->hasManyThrough(Questionario::class, Modalidade::class, 'evento_id', 'questionavel_id')
+            ->where('questionavel_type', Modalidade::class);
     }
 
     /**

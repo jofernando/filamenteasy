@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Formulario;
+namespace App\Models\Questionario;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +21,7 @@ class Questao extends Model
         'nome',
         'tipo',
         'mostrar_resposta_autor',
-        'formulario_id',
+        'questionario_id',
     ];
 
     /**
@@ -50,12 +50,12 @@ class Questao extends Model
     }
 
     /**
-     * Get the formulario that owns the Questao
+     * Get the questionario that owns the Questao
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function formulario(): BelongsTo
+    public function questionario(): BelongsTo
     {
-        return $this->belongsTo(Formulario::class);
+        return $this->belongsTo(Questionario::class);
     }
 }
