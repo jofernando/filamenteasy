@@ -7,9 +7,9 @@
                         <h1 class="text-center font-bold text-lg">{{ $evento->nome }}</h1>
                     </div>
                 </div>
-                <div class="p-6 flex space-y-5 flex-col">
+                <div>
                     <img src="{{ asset('storage/'.$evento->logo) }}" alt="logo evento">
-                    {!! $evento->descricao !!}
+                    <div class="px-6 pb-6 prose block w-full max-w-none">{!! $evento->descricao !!}</div>
                 </div>
             </div>
         </div>
