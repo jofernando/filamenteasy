@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -63,9 +64,9 @@ class Modalidade extends Model
     /**
      * Get all of the questionarios for the Modalidade.
      */
-    public function questionarios(): MorphToMany
+    public function questionarios(): MorphMany
     {
-        return $this->morphToMany(User::class, 'questionavel');
+        return $this->morphMany(Questionario::class, 'questionavel');
     }
 
     /**
