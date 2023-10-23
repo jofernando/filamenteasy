@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Inscricao\Categoria;
 use App\Models\Questionario\Questionario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -111,15 +112,24 @@ class Evento extends Model
         return $this->revisores()->get();
     }
 
-    /**
-     * Get all of the questionarios for the Evento
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function questionarios(): HasManyThrough
+    public function questionarios()
     {
-        return $this->hasManyThrough(Questionario::class, Modalidade::class, 'evento_id', 'questionavel_id')
-            ->where('questionavel_type', Modalidade::class);
+        $cIds = $this->categorias()->pluck('id')->all();
+        $mIds = $this->modalidades()->pluck('id')->all();
+        return Questionario::where(function ($query) use ($cIds, $mIds)  {
+            $query->where(function ($query) use ($cIds) {
+                $query->whereIn('questionavel_id', $cIds)
+                    ->where('questionavel_type', Categoria::class);
+            })->orWhere(function ($query) use ($mIds) {
+                $query->whereIn('questionavel_id', $mIds)
+                    ->where('questionavel_type', Modalidade::class);
+            });
+        });
+    }
+
+    protected function getQuestionariosAttribute()
+    {
+        return $this->questionarios()->get();
     }
 
     /**
@@ -130,5 +140,15 @@ class Evento extends Model
     public function trabalhos(): HasManyThrough
     {
         return $this->hasManyThrough(Trabalho::class, Modalidade::class);
+    }
+
+    /**
+     * Get all of the categorias for the Evento
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categorias(): HasMany
+    {
+        return $this->hasMany(Categoria::class);
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\EventoResource\RelationManagers;
 
 use App\Forms\Components\RepeaterWizard;
+use App\Models\Inscricao\Categoria;
 use App\Models\Modalidade;
+use Closure;
 use App\Models\Questionario\Questao;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,6 +13,7 @@ use Filament\Forms\Get;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class QuestionariosRelationManager extends RelationManager
 {
@@ -23,6 +26,8 @@ class QuestionariosRelationManager extends RelationManager
                 Forms\Components\MorphToSelect::make('questionavel')
                     ->types([
                         Forms\Components\MorphToSelect\Type::make(Modalidade::class)
+                            ->titleAttribute('nome'),
+                        Forms\Components\MorphToSelect\Type::make(Categoria::class)
                             ->titleAttribute('nome'),
                     ]),
                 Forms\Components\TextInput::make('nome')
@@ -80,5 +85,26 @@ class QuestionariosRelationManager extends RelationManager
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
+    {
+        return true;
+    }
+
+    protected function makeTable(): Table
+    {
+        $evento = $this->ownerRecord;
+        return $this->makeBaseRelationshipTable()
+            ->query($evento->questionarios())
+            ->inverseRelationship(static::getInverseRelationshipName())
+            ->modelLabel('questionario')
+            ->pluralModelLabel('questionarios')
+            ->recordTitleAttribute(static::getRecordTitleAttribute())
+            ->heading($this->getTableHeading() ?? static::getTitle($this->getOwnerRecord(), $this->getPageClass()))
+            ->when(
+                $this->getTableRecordUrlUsing(),
+                fn (Table $table, ?Closure $using) => $table->recordUrl($using),
+            );
     }
 }
