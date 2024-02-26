@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Evento;
+use App\Models\Inscricao\Categoria;
 use App\Models\Modalidade;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,7 @@ Route::get('/eventos/{evento}', function (Evento $evento) {
 Route::get('/eventos/{evento}/modalidade/{modalidade}/trabalhos/create', function (Evento $evento, Modalidade $modalidade) {
     return view('trabalhos.create', compact('evento', 'modalidade'));
 })->name('trabalhos.create');
+
+Route::get('/eventos/{evento}/categorias/{categoria}/inscricoes/create', function (Evento $evento, Categoria $categoria) {
+    return view('eventos.categorias.inscricoes.create', compact('evento', 'categoria'));
+})->name('categorias.inscricoes.create');
